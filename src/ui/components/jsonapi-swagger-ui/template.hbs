@@ -1,1 +1,30 @@
-<div><h1>Welcome to Glimmer!</h1></div>
+<main class="page-content" aria-label="Content">
+  <div class="wrapper">
+    <nav-header @swagger={{swagger}}></nav-header>
+
+    <div class="container-fluid">
+      <div class="row">
+
+        <div class="col-md-3 alpha">
+          <div class="sidebar-nav-fixed left-sidebar">
+            <div class="well">
+              <ul class="nav endpoints">
+                <li class="nav-header">API Reference</li>
+                {{#each swagger.endpoints key="@index" as |endpoint|}}
+                  <li>
+                    <a href="#/endpoints/{{endpoint.id}}">{{endpoint.label}}</a>
+                  </li>
+                {{/each}}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {{#unless routeIsChanging}}
+          {{component currentRouteComponent context=this isReady=isReady swagger=swagger params=params}}
+        {{/unless}}
+      </div>
+    </div>
+  </div>
+</main>
+

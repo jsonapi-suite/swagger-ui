@@ -1,0 +1,92 @@
+<div class="col-md-4">
+  <div class="endpoint">
+    {{#if @isReady}}
+      <h2>{{model.label}}</h2>
+
+      <p>{{{model.config.description}}}</p>
+
+      <button onclick={{action fetch}} class="btn btn-primary" type="button">Try It Out</button>
+
+      <div class="parameters">
+        <h4>Parameters</h4>
+
+        {{#each model.config.parameters key="@index" as |param|}}
+          <div class="parameter">
+            <div class='row'>
+              <label>{{param.name}}</label>
+            </div>
+
+            <div class='row'>
+              {{#if (eq param.name 'id')}}
+                <input oninput={{action updateIdParam}} value={{idParam}} class='col-md-6' type="text" />
+              {{else}}
+                {{#if (eq param.name 'payload')}}
+                  <textarea oninput={{action updateParams param.name}} class='col-md-6' type="text" />
+                  <small>Paste JSON here, or - better yet - use <a target="_blank" href='https://www.getpostman.com'>Postman</a></small>
+                {{else}}
+                  <input oninput={{action updateParams param.name}} class='col-md-6' type="text" />
+                {{/if}}
+              {{/if}}
+            </div>
+
+            <div class='row'>
+              <small>{{{param.description}}}</small>
+            </div>
+          </div>
+        {{/each}}
+      </div>
+    {{/if}}
+  </div>
+</div>
+
+<div class="col-md-5">
+  <div class="right-sidebar language-json highlighter-rouge">
+    <ul class="nav nav-tabs">
+      <li><a onclick={{action switchTab 'api-response'}} href="#">API Response</a></li>
+      <li><a onclick={{action switchTab 'schemas'}} href="#">Schemas</a></li>
+    </ul>
+
+    {{#if @isReady}}
+      <div class="tab-content">
+        <div class="tab-pane" class='active' id="api-response">
+          <pre class="highlight">
+            <code class="json hljs">
+            Click "Try it Out" to view API response here
+            </code>
+          </pre>
+        </div>
+
+        <div class="tab-pane" id="schemas">
+          <div class="row">
+            <div class="form-group">
+              <select class="payload-select form-control" onchange={{action changeCurrentPayload}}>
+                {{#each payloads key="@index" as |payload|}}
+                  <option selected={{eq currentPayload.name payload.name}} value={{payload.name}}>{{payload.name}}</option>
+                {{/each}}
+              </select>
+            </div>
+          </div>
+
+          {{#if currentPayload}}
+            <h3>{{ currentPayload.name }}</h3>
+            <ul class="attributes">
+              {{#each (props currentPayload.properties) key="@index" as |prop|}}
+                <li class="attribute">
+                  <div class="row">
+                    <label>
+                      {{prop.key}}
+                      <type-check @type={{prop.value.type}} />
+                    </label>
+                  </div>
+                  <div class="row">
+                    <small>{{prop.value.description}}</small>
+                  </div>
+                </li>
+              {{/each}}
+            </ul>
+          {{/if}}
+        </div>
+      </div>
+    {{/if}}
+  </div>
+</div>

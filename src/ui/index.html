@@ -3,9 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Hello Glimmer</title>
+    <title>API Documentation</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="https://yandex.st/highlightjs/8.0/styles/default.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://yandex.st/highlightjs/8.0/highlight.min.js"></script>
 
     {{content-for "head"}}
 
@@ -15,6 +19,14 @@
   </head>
   <body>
     {{content-for "body"}}
+
+    <script type="text/javascript">
+      window.CONFIG = {
+        githubURL: 'http://replaceme.com', // Fork on Github link
+        basePath: '/api' // basePath/swagger.json, basePath/v1/employees, etc
+        // etc
+      }
+    </script>
 
     <div id="app"></div>
     <script src="{{rootURL}}app.js"></script>

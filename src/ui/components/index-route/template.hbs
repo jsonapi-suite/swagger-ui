@@ -1,0 +1,23 @@
+<h1>Welcome to the {{@swagger.info.title}} API!</h1>
+
+<div class="col-md-9">
+  <div class="introduction">
+    <p>
+      This API adheres to the open-source <a target="_blank" href="http://jsonapi.org">JSONAPI Specification</a>. If you're unfamiliar with JSONAPI, start there!
+    </p>
+
+    <p>
+      Because the specification is verbose, we've omitted the cruft. Instead, Resource Schemas detail the relevant attributes, types, and descriptions.
+      At the top of each endpoint's documentation, you'll see the schemas relevant to that endpoint (ie, possible sideloads and sideposts).
+    </p>
+
+    <p>
+      If you need a token to access this API, use something like <a target="_blank" href="http://www.requestly.in">Requestly</a> to modify your headers each request. This way you can access endpoints directly through your browser.
+    </p>
+  </div>
+
+  <div class="description">
+    <h2>API Details</h2>
+    {{{ @swagger.info.description }}}
+  </div>
+</div>

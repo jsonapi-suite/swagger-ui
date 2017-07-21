@@ -1,3 +1,225 @@
-h1 {
-  color: #444;
+@import "modules/mixins";
+@import "modules/elements";
+@import "modules/buttons";
+
+/* vendor */
+@import "bootstrap/bootstrap";
+@import "bootstrap/overrides";
+
+/* config variables */
+@import "partials/config";
+
+/* layout */
+@import "partials/layout";
+
+$darkCard: #5c666f;
+
+body {
+}
+
+.wrapper > .container-fluid {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.left-sidebar, .right-sidebar {
+  min-height: 2000px;
+
+  pre {
+    height: 100%;
+  }
+}
+
+.possible-sideloads {
+  @extend .label;
+  @extend .label-default;
+}
+
+.alpha {
+  padding-left: 0 !important;
+}
+
+.omega {
+  padding-right: 0 !important;
+}
+
+.navbar {
+  margin-bottom: 0;
+}
+
+.well {
+  background-color: $darkCard;
+  border: none;
+}
+
+.nav-tabs {
+  background-color: darken($darkCard, 10%);
+  border: 1px solid darken($darkCard, 20%);
+
+  li {
+    border: 1px solid darken($darkCard, 20%);
+    box-shadow: 1px 1px 1px 1px $darkCard;
+
+    a {
+      color: white;
+
+      &:hover {
+        border: 1px solid darken($darkCard, 20%);
+        background-color: darken($darkCard, 15%);
+      }
+
+      &.active {
+        background-color: lighten($darkCard, 10%);
+      }
+    }
+  }
+}
+
+.sidebar-nav-fixed {
+  background-color: lighten($darkCard, 10%);
+
+  .well {
+    min-height: 2000px;
+    padding-left: 3rem;
+    box-shadow: inset 1px 1px 5px 2px darken($darkCard, 10%);
+    background-color: lighten($darkCard, 10%);
+  }
+
+  .nav-header {
+    font-weight: 600;
+    color: white;
+  }
+
+  ul li {
+    a {
+      color: #f0f0f0;
+      border-radius: 5px;
+
+      &:hover, &.active, &:focus {
+        background-color: darken(#5c666f, 10%) !important;
+      }
+    }
+  }
+}
+
+pre {
+  background-color: $darkCard;
+  border: none;
+  border-radius: 0;
+
+  code.hljs {
+    background-color: $darkCard;
+    color: lighten(#DAE4F2, 5%);
+    line-height: 20px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+pre {
+  code.hljs {
+    &.coffeescript, &.cs, &.javascript, &.json {
+      [class*=built_in] {
+        color: lighten(#9AB4DB, 5%);
+      }
+      [class*=string] {
+        color: lightgreen;
+      }
+      [class*=attribute] {
+        color: white;
+      }
+      [class*=literal] {
+        color: lighten(red, 30%);
+      }
+      [class*=c1] {
+        color: #B4B4B4;
+      }
+      [class*=constant] {
+        color: #FFDF9D;
+      }
+      [class*=nx], [class*=number] {
+        color: darken(#9ECBEE, 5%);
+      }
+    }
+
+    &.ruby {
+      .class .title, .class .parent {
+        color: #FFDF9D;
+      }
+
+      [class*=keyword] {
+        color: lighten(red, 25%);
+      }
+      [class*=kp] {
+        color: lighten(red, 25%);
+      }
+      [class*=string] {
+        color: lightgreen;
+      }
+      [class*=comment] {
+        color: #B4B4B4;
+      }
+      [class*=constant] {
+        color: #FFDF9D;
+      }
+      [class*=symbol] {
+        color: #9ECBEE;
+      }
+    }
+  }
+}
+
+.endpoint {
+  .parameters {
+    .parameter {
+      padding: 1rem;
+
+      input {
+        padding: 1rem;
+        border-radius: 5px;
+        border: 1px solid #B4B4B4;
+      }
+
+      textarea {
+        width: 100%;
+        height: 30rem;
+      }
+    }
+  }
+}
+
+.right-sidebar {
+  .tab-content {
+  }
+}
+
+#api-response pre, #schemas {
+  box-shadow: inset 1px 1px 5px 2px darken($darkCard, 10%);
+}
+
+#api-response {
+  pre {
+    min-height: 2000px;
+  }
+}
+
+#schemas {
+  background-color: $darkCard;
+  min-height: 2000px;
+  padding-left: 2rem;
+  color: white;
+
+  .payload-select {
+    margin: 1rem 0 0 1rem;
+    @extend .col-md-6;
+  }
+
+  .attributes {
+    list-style-type: none;
+    font-size: 120%;
+
+    .attribute {
+      margin: 1rem 0 1rem 0;
+    }
+  }
 }

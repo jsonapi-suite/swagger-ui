@@ -1,7 +1,8 @@
 # jsonapi-swagger-ui
 
-This README outlines the details of collaborating on this Glimmer application.
-A short introduction of this app could easily go here.
+This is an alternative to [swagger-ui](https://swagger.io/swagger-ui),
+which has limitations around endpoints that can accept many different
+query parameters and response types.
 
 ## Prerequisites
 
